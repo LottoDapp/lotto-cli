@@ -4,13 +4,20 @@ import {initConnection as initPhatContractConnection} from './phatContractHelper
 import {checkGrants, checkLottoConfiguration} from './checks';
 import {getCurrentRaffleId, getCurrentStatus, participate, participateWithBatch} from './lotto';
 import {callPhatContract} from './lottoDraw';
-import {alice, initConnection as initSmartContractConnection, participant} from "./smartContractHelper";
+import {
+    alice, api,
+    getKeyringPair,
+    initConnection as initSmartContractConnection,
+    participant,
+    signAndSend
+} from "./smartContractHelper";
 
 const argv = yargs(process.argv.slice(2)).options({
     dc: {alias: 'displayConfiguration', desc: 'Display the configuration (contract and http addresses)'},
     di: {alias: 'displayInformation', desc: 'Display information from indexer and smart contracts'},
     ch: {alias: 'checks', desc: 'Check if the grants and the configuration in the smart contracts have been set'},
     pa: {alias: 'participate', desc: 'Test the participation'},
+    bo: {alias: 'botIndex', desc: 'Index for the bot'},
     dn:  {alias: 'drawNumbers', desc: 'Draw the numbers'},
     cw:  {alias: 'checkWinners', desc: 'Check the winners'},
     net: {alias: 'network', choices:['shibuya', 'astar'], type:'string', desc: 'Specify the network', requiresArg: true},
@@ -54,6 +61,13 @@ async function run() : Promise<void>{
     }
 
     if (argv.participate) {
+
+        const index = argv.botIndex;
+        const bot = await getKeyringPair(index);
+
+
+        await signAndSend(participant, api.tx.balances.transfer(bot.address, BigInt("100000000000000000000")));
+
         for (let i = 0; i <50; i++) {
             let numbers: Number[][] = [];
             for (let j = 0; j < 30; j++) {
@@ -63,7 +77,7 @@ async function run() : Promise<void>{
                 const n4 = Math.floor(Math.random() * 50) + 1;
                 numbers[j] = [n1, n2, n3, n4];
             }
-            await participateWithBatch(participant, numbers);
+            await participateWithBatch(bot, numbers);
         }
     }
 

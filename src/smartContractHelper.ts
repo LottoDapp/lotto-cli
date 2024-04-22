@@ -39,6 +39,10 @@ export async function initConnection(){
     lottoSmartContract = new ContractPromise(api, lottoSmartContractMetadata.toString(), config.lottoSmartContractAddress);
 }
 
+export async function getKeyringPair(index: String): Promise<KeyringPair>{
+    return new Keyring({ type: 'sr25519' }).addFromUri(seed.participant + "/" + index.toString());
+}
+
 
 export async function signAndSend(
     signer: KeyringPair,
