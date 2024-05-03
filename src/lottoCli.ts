@@ -8,7 +8,7 @@ import {
     alice, api,
     getKeyringPair,
     initConnection as initSmartContractConnection,
-    participant,
+    pair,
     signAndSend
 } from "./smartContractHelper";
 
@@ -65,12 +65,13 @@ async function run() : Promise<void>{
         const index = argv.botIndex;
         const bot = await getKeyringPair(index);
 
-
-        await signAndSend(participant, api.tx.balances.transfer(bot.address, BigInt("100000000000000000000")));
+        // transfer 100 SBY from teh main address to the bot
+        await signAndSend(pair, api.tx.balances.transfer(bot.address, BigInt("100000000000000000000")));
 
         for (let i = 0; i <50; i++) {
             let numbers: Number[][] = [];
             for (let j = 0; j < 30; j++) {
+                // stupid random numbers
                 const n1 = Math.floor(Math.random() * 50) + 1;
                 const n2 = Math.floor(Math.random() * 50) + 1;
                 const n3 = Math.floor(Math.random() * 50) + 1;
@@ -86,6 +87,10 @@ async function run() : Promise<void>{
 
         const raffleId = await getCurrentRaffleId();
         const status = await getCurrentStatus();
+
+        if (status == 'Ongoing'){
+            console.log('No pending message in the queue');
+        }
 
         if (argv.drawNumbers && status == 'WaitingResults'){
             console.log('Draw the numbers for raffle %s', raffleId);

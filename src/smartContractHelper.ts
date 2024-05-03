@@ -9,11 +9,9 @@ import {setTimeout} from "timers/promises";
 import {isDebug} from "./lottoCli";
 import {seed} from "./seed";
 
-
-
 export let api : ApiPromise;
 export let alice : KeyringPair;
-export let participant : KeyringPair;
+export let pair : KeyringPair;
 
 export let lottoSmartContract : ContractPromise;
 
@@ -33,7 +31,7 @@ export async function initConnection(){
     console.log('You are connected to chain %s using %s v%s', chain, nodeName, nodeVersion);
 
     alice = new Keyring({ type: 'sr25519' }).addFromUri("//Alice");
-    participant = new Keyring({ type: 'sr25519' }).addFromUri(seed.participant);
+    pair = new Keyring({ type: 'sr25519' }).addFromUri(seed.participant);
 
     const lottoSmartContractMetadata = readFileSync(config.lottoSmartContractMetadata);
     lottoSmartContract = new ContractPromise(api, lottoSmartContractMetadata.toString(), config.lottoSmartContractAddress);
