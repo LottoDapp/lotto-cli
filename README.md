@@ -68,12 +68,13 @@ If you want to check the configuration.
 npx tsx src/lottoCli.ts --network <network> --checks 
 ```
 
-If you want to query the phat contract to check if there is a pending request.
+If you want to query the phat contract to draw the winning numbers.
 
 ```
 npx tsx src/lottoCli.ts --network <network> --drawNumbers 
 ```
-or
+
+If you want to query the phat contract to check the winners.
 
 ```
 npx tsx src/lottoCli.ts --network <network> --checkWinners 
