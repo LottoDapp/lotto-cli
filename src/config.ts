@@ -1,7 +1,4 @@
 
-import { initSeedConfig } from './seed';
-
-
 interface Config {
     readonly smartContractRpc: string;
     readonly phatContractRpc: string;
@@ -48,7 +45,6 @@ export function initConfiguration(network: string) {
     } else {
         throw new Error("No config for this Network");
     }
-    initSeedConfig(network);
 }
 
 export function displayConfiguration(){
