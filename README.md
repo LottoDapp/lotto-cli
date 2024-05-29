@@ -6,7 +6,6 @@ This project:
 - check the configuration about smart contract and phat contract.
 - call the phat contract to draw the numbers. If there is no pending message in the queue, nothing is done.
 - call the phat contract to check teh winners. If there is no pending message in the queue, nothing is done.
-- start bots to participate.
 
 
 ## Environment
@@ -52,8 +51,6 @@ Options:
       --dc, --displayConfiguration  Display the configuration (contract and http addresses)
       --di, --displayInformation    Display information from indexer and smart contracts
       --ch, --checks                Check if the grants and the configuration in the smart contracts have been set
-      --pa, --participate           Test the participation
-      --bo, --botIndex              Index for the bot
       --dn, --drawNumbers           Draw the numbers (query the phat contract)
       --cw, --checkWinners          Check the winners (query the phat contract)
       --net, --network              Specify the network
