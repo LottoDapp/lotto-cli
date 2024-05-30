@@ -16,9 +16,9 @@ class ShibuyaConfig implements Config {
     // shibuya: wss://shibuya-rpc.dwellir.com
     smartContractRpc = 'wss://rpc.shibuya.astar.network';
     phatContractRpc = 'wss://poc6.phala.network/ws';
-    lottoSmartContractAddress = 'aB9AxBVmoYogZ5ZAX662R5YJafTVCqVbtGzJYX3LvvwZW5r';
-    lottoPhatContractAddress = "0x413c95b799c28b11cb0e0bfb4cdcd41dc80f61a7f325e4e83c9c13c27f1b830b";
-    lottoPhatContractAttestorAddress = "0xc858da5dfd651e04f66403f6d187cae9abae923662507710d139471653dc66b7";
+    lottoSmartContractAddress = 'bQBYitAbSZuJUvL2ZGqinseRXrcTggZ6F4TvJKYrR7WvkvJ';
+    lottoPhatContractAddress = "0x5dd52dc1eaedc7bfafadb8dfe01b93b599a6818cb12ef3687d92a0e1b7ed6a03";
+    lottoPhatContractAttestorAddress = "0x3a569d12626a2d95d8f7221b6d29a09fcb737869b1172789c60f2098f9794e90";
     lottoSmartContractMetadata = './metadata/shibuya/lotto_contract.json';
     lottoPhatContractMetadata = "./metadata/shibuya/lotto_draw.json";
 }
